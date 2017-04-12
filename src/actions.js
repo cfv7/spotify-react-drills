@@ -23,5 +23,11 @@ export const searchArtistsError = error => ({
 export const searchArtists = artist => dispatch => {
     // Make this async action using the search function
     // It should dispatch the three sync actions above
+    dispatch(searchArtistsRequest())
+    search(artist)
+    .then(artists => dispatch(searchArtistsSuccess(artists)))
+    .catch(err => dispatch(searchArtistsError(err)))
+    
+
 };
 

@@ -30,9 +30,13 @@ export class ArtistSearch extends React.Component {
             <div className="artist-search">
                 {/* When this form is submitted you should submit the
                     searchArtists action */}
-                <form>
-                    <input type="search" ref={input => this.input = input} />
-                    <button>Search</button>
+                <form onSubmit={e => {
+                    e.preventDefault()
+                    console.log(e.target.artist.value)
+                    this.props.dispatch(searchArtists(e.target.artist.value))
+                }}>
+                    <input type="search" name="artist" ref={input => this.input = input} />
+                    <button >Search</button>
                 </form>
                 <ul className="artist-search-results">
                     {this.renderResults()}
